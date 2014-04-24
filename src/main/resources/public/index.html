@@ -1,0 +1,28 @@
+<html ng-app="springApp">
+<head>
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+</head>
+<body>
+<div class="bs-docs-container">
+    <div ng-controller="MainCtrl">
+        <p>{{test}}</p>
+        <a href="/">Home</a>
+        <a ui-sref="template1">Template 1</a>
+        <a ui-sref="template2">Template 2</a>
+
+        <div class="well" ui-view="viewOne"></div>
+        <div class="well" ui-view="viewTwo"></div>
+    </div>
+</div>
+<script src="js/vendors/angular/angular.js"></script>
+<script src="js/vendors/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="app/app.js"></script>
+<script src="app/controllers/MainCtrl.js"></script>
+<script src="app/controllers/TemplateCtrl.js"></script>
+<script src="app/controllers/AnotherCtrl.js"></script>
+<script src="app/services/TestSvc.js"></script>
+<script src="app/services/AnotherSvc.js"></script>
+</body>
+</html>

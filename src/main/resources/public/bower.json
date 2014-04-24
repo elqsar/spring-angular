@@ -1,0 +1,9 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "authors": [
+    "Boris"
+  ],
+  "license": "MIT",
+  "private": true
+}
