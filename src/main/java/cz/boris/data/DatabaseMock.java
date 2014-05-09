@@ -1,21 +1,57 @@
 package cz.boris.data;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.Servlet;
+import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
+import org.springframework.util.concurrent.ListenableFutureTask;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Boris on 23.4.2014.
  */
+@Service
 public class DatabaseMock {
 
-    static class User {
-        String name;
-        String age;
-    }
-
     public List<User> getUsers() {
-
-        return null;
+        List<User> users = new ArrayList<>();
+        users.add(new User("Boris", "111", 0));
+        users.add(new User("Sebik", "222", 0));
+        users.add(new User("Ilonka", "333", 0));
+        return users;
     }
+
+    public static void main(String[] args) {
+        ListenableFutureTask<String> task = new ListenableFutureTask<>(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                for(int i = 0; i < Integer.MAX_VALUE; i++) {
+                    int out = i;
+                }
+                return "Answer";
+            }
+        });
+        task.addCallback(new ListenableFutureCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                System.out.println(result);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                System.out.println(t.getCause());
+            }
+        });
+        ExecutorService es = Executors.newCachedThreadPool();
+        es.submit(task);
+        System.out.println("Not blocking");
+        es.shutdown();
+    }
+
+
 }

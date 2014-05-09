@@ -44,4 +44,9 @@ public class TestControllerTest {
     public void contentTest() throws Exception {
         mockMvc.perform(get("/test")).andExpect(status().isOk()).andExpect(content().string(containsString("Apple Mac Book")));
     }
+
+    @Test
+    public void usersTest() throws Exception {
+        mockMvc.perform(get("/users")).andExpect(status().isOk()).andExpect(content().contentType("application/json;charset=UTF-8"));
+    }
 }

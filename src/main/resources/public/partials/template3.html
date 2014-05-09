@@ -1,1 +1,8 @@
 <div ng-controller="AnotherCtrl">{{result}}</div>
+
+<div ng-controller="TemplateCtrl">
+    <ul ng-repeat="user in users">
+        <li>{{user.name}}</li>
+        <li>{{user.points}}</li>
+    </ul>
+</div>
