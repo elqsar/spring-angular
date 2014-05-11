@@ -25,33 +25,4 @@ public class DatabaseMock {
         users.add(new User("Ilonka", "333", 0));
         return users;
     }
-
-    public static void main(String[] args) {
-        ListenableFutureTask<String> task = new ListenableFutureTask<>(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                for(int i = 0; i < Integer.MAX_VALUE; i++) {
-                    int out = i;
-                }
-                return "Answer";
-            }
-        });
-        task.addCallback(new ListenableFutureCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                System.out.println(result);
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                System.out.println(t.getCause());
-            }
-        });
-        ExecutorService es = Executors.newCachedThreadPool();
-        es.submit(task);
-        System.out.println("Not blocking");
-        es.shutdown();
-    }
-
-
 }
